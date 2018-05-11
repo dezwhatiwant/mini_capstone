@@ -1,18 +1,14 @@
 class Api::ProductsController < ApplicationController
-  def all_products_action
+  def index
     @products = Product.all
-    render 'all_products.json.jbuilder'  
+    render 'index.json.jbuilder'
   end
 
-  def basketball_action
-    @product = Product.find(1)
-    render 'basketball_view.json.jbuilder'  
+  def show
+    product_id = params[:id]
+    @product = Product.find(product_id)
+    render 'show.json.jbuilder'
+    
   end
-
-  def football_action
-    @product = Product.find_by(name: "Football")
-    render 'football_view.json.jbuilder' 
-  end
-
 end
 
