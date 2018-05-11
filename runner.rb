@@ -20,10 +20,22 @@ require 'unirest'
 # puts JSON.pretty_generate(response.body)
 
 # UPDATE ACTION
-product_id = 2
-runner_params = {
+# product_id = 2
+# runner_params = {
+#                  description: "Wilson NFL regulation football" 
+#                 }
 
-}
+# response = Unirest.patch(
+#                          "http://localhost:3000/api/products/#{product_id}",
+#                          parameters: runner_params
+#                         )
+# product_hash = response.body
+# JSON.pretty_generate(product_hash)
+
+product_id = 2
+response = Unirest.delete("http://localhost:3000/api/products/#{product_id}")
+data = response.body
+puts JSON.pretty_generate(data)
 
 
 

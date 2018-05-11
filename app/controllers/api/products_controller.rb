@@ -31,8 +31,16 @@ class Api::ProductsController < ApplicationController
     @product.image_url = params[:image_url] || @product.image_url
     @product.description = params[:description] || @product.description
 
-    @recipe.save
+    @product.save
     render 'show.json.jbuilder'
+  end
+
+  def destroy
+    product_id = params[:id]
+    @product = Product.find(product_id)
+    @product.destroy
+
+    render json: {message: "Product #{product_id} successfully destoyed"}
     
   end
 end
