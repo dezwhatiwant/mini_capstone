@@ -32,6 +32,7 @@ require 'unirest'
 # product_hash = response.body
 # JSON.pretty_generate(product_hash)
 
+# DELETE ACTION
 product_id = 2
 response = Unirest.delete("http://localhost:3000/api/products/#{product_id}")
 data = response.body

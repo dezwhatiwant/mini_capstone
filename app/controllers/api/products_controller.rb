@@ -40,7 +40,7 @@ class Api::ProductsController < ApplicationController
     @product = Product.find(product_id)
     @product.destroy
 
-    render json: {message: "Product #{product_id} successfully destoyed"}
+    render json: {message: "Product #{product_id} successfully destroyed"}
     
   end
 end
