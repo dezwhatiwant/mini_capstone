@@ -24,6 +24,7 @@ class Api::ProductsController < ApplicationController
   end
 
   def show
+    puts "headers: #{request.headers["Authorization"]}"
     product_id = params[:id]
     @product = Product.find(product_id)
     render 'show.json.jbuilder'
