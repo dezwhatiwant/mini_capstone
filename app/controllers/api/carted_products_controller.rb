@@ -1,5 +1,10 @@
 class Api::CartedProductsController < ApplicationController 
 
+  def index
+    @carted_products = CartedProduct.where(user_id: 1, status: "carted")
+    render 'index.json.jbuilder'
+  end
+
   def create
     @carted_product = CartedProduct.new(
                                         user_id: current_user.id,
@@ -13,7 +18,6 @@ class Api::CartedProductsController < ApplicationController
   end
 
   def show
-      
   end
 
 end
