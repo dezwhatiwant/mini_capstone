@@ -31,29 +31,3 @@ ProductCategory.create(category_id: 6, product_id: 8)
 ProductCategory.create(category_id: 6, product_id: 9)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
