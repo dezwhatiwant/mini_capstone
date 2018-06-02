@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :user
+  belongs_to :product
   has_many :carted_products
   has_many :products, through: :carted_products
 
@@ -26,16 +27,7 @@ class Order < ApplicationRecord
     calculate_total
   end
 
-
-
-
-
   def purchased_on
     created_at.strftime('%A, %d %b %Y %l:%M %p')  
   end
-
-
-
 end
-
-
