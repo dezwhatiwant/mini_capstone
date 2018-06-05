@@ -1,4 +1,6 @@
 class Api::ProductsController < ApplicationController
+  before_action :authenticate_admin, only: [:create, :update, :destroy]
+
   def index
     @products = Product.all
 
@@ -72,8 +74,7 @@ class Api::ProductsController < ApplicationController
     @product = Product.find(product_id)
     @product.destroy
 
-    render json: {message: "Product #{product_id} successfully destroyed"}
-    
+    render json: {message: "Product #{product_id} successfully destroyed"}  
   end
 end
 
