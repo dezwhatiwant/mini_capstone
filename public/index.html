@@ -32,34 +32,22 @@
   <div class="vue-component">
     
     <div class="container">
-      <div v-for="product in products">
-        <h1 >{{ product.name }}</h1>
-        <h5>{{ product.description }}</h5>
-        <h5>{{ product.formatted.price }}</h5>
-        <a v-bind:href="'/#/products/' + product.id">More Info</a>
-      </div>
-    
-
-    <div class="row">
-
-        <div v-for="product in products" class="card mb-5" style="width: 18rem;">
-          <img class="card-img-top" src="<%= product["images"][0]["url"] %>">
-          <div class="card-body">
-            <h5 class="card-title"><%= product["name"] %></h5>
-            <p class="card-text"><%= product["description"] %></p>
-          </div>
-          <div class="card-footer">
-            <a href="/client/products/<%= product["id"] %>" class="btn btn-primary">Product Info</a>
+      <div class="row">
+        <div v-for="product in products" class="col-md-4">
+          <div class="card-mb-5" style="width: 18rem;">
+            <img class="card-img-top" v-bind:src="product['images'][0].url">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="card-text">{{ product.description }}</p>
+            </div>
+            <div class="card-footer">
+              <a v-bind:href="'/#/products/' + product.id" class="btn btn-primary">Product Info</a>
+            </div>
           </div>
         </div>
+      </div>
     </div>
-
-
-
-
-
-    </div>
-
+    
   </div>
 </template>
 
@@ -156,7 +144,7 @@
       <h4>Total: {{ product["formatted"]["total"] }}</h4>
       <h4>{{ product["description"] }}</h4>
       
-      <img v-bind:src="image['url']" height="275">
+      <img v-bind:src="product['images'][0].url" height="275">
       
       <br>
       <h6>Supplier: {{ product["supplier"]["name"] }}</h6>

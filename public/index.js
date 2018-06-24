@@ -16,7 +16,16 @@ var ProductsIndexPage = {
   template: "#products-index-page",
   data: function() {
     return {
-      products: []
+      products: [
+        {
+          images: [
+            {
+              url: ""
+            }
+          ]
+
+        }
+      ]
     };
   },
   created: function() {
@@ -45,7 +54,11 @@ var ProductsShowPage = {
             price: "",
           }
         ],
-        images: []
+        images: [
+          {
+            url: ""
+          }
+        ]
       }
     };
   },
