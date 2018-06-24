@@ -12,13 +12,13 @@
 </head>
 <body>
   <div id="vue-app">
+    <a href="/#/">Home</a>
     <a href="/#/signup">Signup</a>
     <a href="/#/login">Login</a>
     <a href="/#/logout">Logout</a>
+    <a href="/#/new_product">New Product</a>
+    <a href="/#/shopping_cart">Cart</a>
     <router-view></router-view>
-
-    <p>sup</p>
-
   </div>
 
 
@@ -28,10 +28,37 @@
 </body>
 </html>
 
-<template id="home-page">
+<template id="products-index-page">
   <div class="vue-component">
+    
+    <div class="container">
+      <div v-for="product in products">
+        <h1 >{{ product.name }}</h1>
+        <h5>{{ product.description }}</h5>
+        <h5>{{ product.formatted.price }}</h5>
+        <a v-bind:href="'/#/products/' + product.id">More Info</a>
+      </div>
+    
 
-    <h1>{{ message }}</h1>
+    <div class="row">
+
+        <div v-for="product in products" class="card mb-5" style="width: 18rem;">
+          <img class="card-img-top" src="<%= product["images"][0]["url"] %>">
+          <div class="card-body">
+            <h5 class="card-title"><%= product["name"] %></h5>
+            <p class="card-text"><%= product["description"] %></p>
+          </div>
+          <div class="card-footer">
+            <a href="/client/products/<%= product["id"] %>" class="btn btn-primary">Product Info</a>
+          </div>
+        </div>
+    </div>
+
+
+
+
+
+    </div>
 
   </div>
 </template>
@@ -88,8 +115,56 @@
   </div>
 </template>
 
+<template id="new-product">
+  <div class="vue-component">
 
+    <div class="container">
+      <h1>New Product</h1>
+      <ul>
+        <li class="text-danger" v-for="error in errors">{{ error }}</li>
+      </ul>
+      <div class="form-group">
+        <label>Name of Product</label>
+        <input type="name" class="form-control" v-model="name">
+      </div>
+      <div class="form-group">
+        <label>Price of Product</label>
+        <input type="price" class="form-control" v-model="price">
+      </div>
+      <div class="form-group">
+        <label>Description of Product</label>
+        <input type="description" class="form-control" v-model="description">
+      </div>
+      <div class="form-group">
+        <label>Supplier ID of Product</label>
+        <input type="supplier_id" class="form-control" v-model="supplier_id">
+      </div>  
+      <button class="btn btn-primary" v-on:click="submit()">Submit</button>
+    </div>
 
+  </div>
+</template>
 
+<template id="products-show-page">
+  <div class="vue-component">
+    
+    <div class="container">
+
+      <h2>{{ product["name"] }}</h2>
+      <h5>Price: {{ product["formatted"]["price"] }}</h5>
+      <h5>Tax: {{ product["formatted"]["tax"] }}</h5>
+      <h4>Total: {{ product["formatted"]["total"] }}</h4>
+      <h4>{{ product["description"] }}</h4>
+      
+      <img v-bind:src="image['url']" height="275">
+      
+      <br>
+      <h6>Supplier: {{ product["supplier"]["name"] }}</h6>
+      <h6>Product ID: 000674-43{{ product["id"] }}</h6>
+
+    </div>
+
+  </div>
+</template>
 
 
